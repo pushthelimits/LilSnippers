@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LilSnippersModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="LilSnippersEntities" p1:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(LilSnippersModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(LilSnippersModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="Clients" EntityType="LilSnippersModel.Client" />
+    <EntitySet Name="Countries" EntityType="LilSnippersModel.Country" />
+    <EntitySet Name="Employees" EntityType="LilSnippersModel.Employee" />
+    <EntitySet Name="EmpPositions" EntityType="LilSnippersModel.EmpPosition" />
+    <EntitySet Name="HearAbouts" EntityType="LilSnippersModel.HearAbout" />
+    <EntitySet Name="HomeAddresses" EntityType="LilSnippersModel.HomeAddress" />
+    <EntitySet Name="Media" EntityType="LilSnippersModel.Medium" />
+    <EntitySet Name="MediaTypes" EntityType="LilSnippersModel.MediaType" />
+    <EntitySet Name="Months1" EntityType="LilSnippersModel.Months" />
+    <EntitySet Name="ParentGuardians" EntityType="LilSnippersModel.ParentGuardian" />
+    <EntitySet Name="Products" EntityType="LilSnippersModel.Product" />
+    <EntitySet Name="ProductTypes" EntityType="LilSnippersModel.ProductType" />
+    <EntitySet Name="States" EntityType="LilSnippersModel.State" />
+    <EntitySet Name="StylistTimes" EntityType="LilSnippersModel.StylistTime" />
+    <EntitySet Name="Suppliers" EntityType="LilSnippersModel.Supplier" />
+    <AssociationSet Name="FK_Client_HomeAddress" Association="LilSnippersModel.FK_Client_HomeAddress">
+      <End Role="HomeAddress" EntitySet="HomeAddresses" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_Month" Association="LilSnippersModel.FK_Client_Month">
+      <End Role="Month" EntitySet="Months1" />
+      <End Role="Client" EntitySet="Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_Country" Association="LilSnippersModel.FK_Supplier_Country">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_EmpPosition" Association="LilSnippersModel.FK_Employee_EmpPosition">
+      <End Role="EmpPosition" EntitySet="EmpPositions" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_State" Association="LilSnippersModel.FK_Employee_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Employee" EntitySet="Employees" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StylistTimes_Employee" Association="LilSnippersModel.FK_StylistTimes_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="StylistTime" EntitySet="StylistTimes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeAddress_HearAbout" Association="LilSnippersModel.FK_HomeAddress_HearAbout">
+      <End Role="HearAbout" EntitySet="HearAbouts" />
+      <End Role="HomeAddress" EntitySet="HomeAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HomeAddress_State" Association="LilSnippersModel.FK_HomeAddress_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="HomeAddress" EntitySet="HomeAddresses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParentGuardian_HomeAddress" Association="LilSnippersModel.FK_ParentGuardian_HomeAddress">
+      <End Role="HomeAddress" EntitySet="HomeAddresses" />
+      <End Role="ParentGuardian" EntitySet="ParentGuardians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Media_Media" Association="LilSnippersModel.FK_Media_Media">
+      <End Role="MediaType" EntitySet="MediaTypes" />
+      <End Role="Medium" EntitySet="Media" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductType" Association="LilSnippersModel.FK_Product_ProductType">
+      <End Role="ProductType" EntitySet="ProductTypes" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Supplier" Association="LilSnippersModel.FK_Product_Supplier">
+      <End Role="Supplier" EntitySet="Suppliers" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Supplier_State" Association="LilSnippersModel.FK_Supplier_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Supplier" EntitySet="Suppliers" />
+    </AssociationSet>
+    <EntitySet Name="Transactions" EntityType="LilSnippersModel.Transaction" />
+    <AssociationSet Name="FK_Transactions_Employee" Association="LilSnippersModel.FK_Transactions_Employee">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transactions_HomeAddress" Association="LilSnippersModel.FK_Transactions_HomeAddress">
+      <End Role="HomeAddress" EntitySet="HomeAddresses" />
+      <End Role="Transaction" EntitySet="Transactions" />
+    </AssociationSet>
+    <EntitySet Name="Services" EntityType="LilSnippersModel.Service" />
+    <EntitySet Name="Transaction_Details" EntityType="LilSnippersModel.Transaction_Details" />
+    <AssociationSet Name="FK_Transaction_Details_Product" Association="LilSnippersModel.FK_Transaction_Details_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Transaction_Details" EntitySet="Transaction_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Details_Service" Association="LilSnippersModel.FK_Transaction_Details_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Transaction_Details" EntitySet="Transaction_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Transaction_Details_Transactions" Association="LilSnippersModel.FK_Transaction_Details_Transactions">
+      <End Role="Transaction" EntitySet="Transactions" />
+      <End Role="Transaction_Details" EntitySet="Transaction_Details" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Type="Int32" Name="ClientID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ClientFirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClientLastName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="MonthID" />
+    <Property Type="Int32" Name="BirthDate" />
+    <Property Type="Int32" Name="BirthYear" />
+    <Property Type="String" Name="HaircutNotes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="HomeAddressID" />
+    <NavigationProperty Name="HomeAddress" Relationship="LilSnippersModel.FK_Client_HomeAddress" FromRole="Client" ToRole="HomeAddress" />
+    <NavigationProperty Name="Month" Relationship="LilSnippersModel.FK_Client_Month" FromRole="Client" ToRole="Month" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryID" />
+    </Key>
+    <Property Type="Int32" Name="CountryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Country1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Suppliers" Relationship="LilSnippersModel.FK_Supplier_Country" FromRole="Country" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Type="Int32" Name="EmployeeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="EmpFirstName" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpLastName" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpAddress1" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpAddress2" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpCity" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="StateID" />
+    <Property Type="String" Name="EmpZIP" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpPhone" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpEmail" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmpBirthDate" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HireDate" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="HourlyWage" Precision="2" Scale="2" />
+    <Property Type="String" Name="TaxStatus" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="NumExemptions" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="EmpPositionID" />
+    <NavigationProperty Name="EmpPosition" Relationship="LilSnippersModel.FK_Employee_EmpPosition" FromRole="Employee" ToRole="EmpPosition" />
+    <NavigationProperty Name="State" Relationship="LilSnippersModel.FK_Employee_State" FromRole="Employee" ToRole="State" />
+    <NavigationProperty Name="StylistTimes" Relationship="LilSnippersModel.FK_StylistTimes_Employee" FromRole="Employee" ToRole="StylistTime" />
+    <NavigationProperty Name="Transactions" Relationship="LilSnippersModel.FK_Transactions_Employee" FromRole="Employee" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="EmpPosition">
+    <Key>
+      <PropertyRef Name="EmpPositionID" />
+    </Key>
+    <Property Type="Int32" Name="EmpPositionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="EmpPosition1" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="LilSnippersModel.FK_Employee_EmpPosition" FromRole="EmpPosition" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="HearAbout">
+    <Key>
+      <PropertyRef Name="HearAboutID" />
+    </Key>
+    <Property Type="Int32" Name="HearAboutID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="HearAbout1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="HomeAddresses" Relationship="LilSnippersModel.FK_HomeAddress_HearAbout" FromRole="HearAbout" ToRole="HomeAddress" />
+  </EntityType>
+  <EntityType Name="HomeAddress">
+    <Key>
+      <PropertyRef Name="HomeAddressID" />
+    </Key>
+    <Property Type="Int32" Name="HomeAddressID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="HomeAddress1" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HomeAddress2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HomeCity" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="StateID" />
+    <Property Type="String" Name="HomeZIP" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HomePhone" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="HomeEmail" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="HearAboutID" />
+    <NavigationProperty Name="Clients" Relationship="LilSnippersModel.FK_Client_HomeAddress" FromRole="HomeAddress" ToRole="Client" />
+    <NavigationProperty Name="HearAbout" Relationship="LilSnippersModel.FK_HomeAddress_HearAbout" FromRole="HomeAddress" ToRole="HearAbout" />
+    <NavigationProperty Name="State" Relationship="LilSnippersModel.FK_HomeAddress_State" FromRole="HomeAddress" ToRole="State" />
+    <NavigationProperty Name="ParentGuardians" Relationship="LilSnippersModel.FK_ParentGuardian_HomeAddress" FromRole="HomeAddress" ToRole="ParentGuardian" />
+    <NavigationProperty Name="Transactions" Relationship="LilSnippersModel.FK_Transactions_HomeAddress" FromRole="HomeAddress" ToRole="Transaction" />
+  </EntityType>
+  <EntityType Name="Medium">
+    <Key>
+      <PropertyRef Name="MediaID" />
+    </Key>
+    <Property Type="Int32" Name="MediaID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="MediaTitle" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="MediaTypeID" Nullable="false" />
+    <NavigationProperty Name="MediaType" Relationship="LilSnippersModel.FK_Media_Media" FromRole="Medium" ToRole="MediaType" />
+  </EntityType>
+  <EntityType Name="MediaType">
+    <Key>
+      <PropertyRef Name="MediaTypeID" />
+    </Key>
+    <Property Type="Int32" Name="MediaTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="MediaType1" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Media" Relationship="LilSnippersModel.FK_Media_Media" FromRole="MediaType" ToRole="Medium" />
+  </EntityType>
+  <EntityType Name="Months">
+    <Key>
+      <PropertyRef Name="MonthID" />
+    </Key>
+    <Property Type="Int32" Name="MonthID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="MonthName" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Clients" Relationship="LilSnippersModel.FK_Client_Month" FromRole="Month" ToRole="Client" />
+  </EntityType>
+  <EntityType Name="ParentGuardian">
+    <Key>
+      <PropertyRef Name="ParentGuardianID" />
+    </Key>
+    <Property Type="Int32" Name="ParentGuardianID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ParentFirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ParentLastName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="HomeAddressID" />
+    <NavigationProperty Name="HomeAddress" Relationship="LilSnippersModel.FK_ParentGuardian_HomeAddress" FromRole="ParentGuardian" ToRole="HomeAddress" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ItemNo" />
+    </Key>
+    <Property Type="Int32" Name="ProductID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ItemNo" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Size" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="CostPerEach" Precision="5" Scale="2" />
+    <Property Type="Int32" Name="NoPerPack" />
+    <Property Type="Decimal" Name="CostPerPack" Precision="5" Scale="2" />
+    <Property Type="Decimal" Name="RetailPrice" Precision="5" Scale="2" />
+    <Property Type="Int16" Name="QtyOnHand" />
+    <Property Type="Int16" Name="PhysicalCount" />
+    <Property Type="Int16" Name="QtyOnOrder" />
+    <Property Type="Int16" Name="ReorderLevel" />
+    <Property Type="Boolean" Name="Active" />
+    <Property Type="Int32" Name="ProductTypeID" />
+    <Property Type="Int32" Name="SupplierID" />
+    <NavigationProperty Name="ProductType" Relationship="LilSnippersModel.FK_Product_ProductType" FromRole="Product" ToRole="ProductType" />
+    <NavigationProperty Name="Supplier" Relationship="LilSnippersModel.FK_Product_Supplier" FromRole="Product" ToRole="Supplier" />
+    <NavigationProperty Name="Transaction_Details" Relationship="LilSnippersModel.FK_Transaction_Details_Product" FromRole="Product" ToRole="Transaction_Details" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="ProductTypeID" />
+    </Key>
+    <Property Type="Int32" Name="ProductTypeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ProductType1" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="LilSnippersModel.FK_Product_ProductType" FromRole="ProductType" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="StateID" />
+    </Key>
+    <Property Type="Int32" Name="StateID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="State1" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employees" Relationship="LilSnippersModel.FK_Employee_State" FromRole="State" ToRole="Employee" />
+    <NavigationProperty Name="HomeAddresses" Relationship="LilSnippersModel.FK_HomeAddress_State" FromRole="State" ToRole="HomeAddress" />
+    <NavigationProperty Name="Suppliers" Relationship="LilSnippersModel.FK_Supplier_State" FromRole="State" ToRole="Supplier" />
+  </EntityType>
+  <EntityType Name="StylistTime">
+    <Key>
+      <PropertyRef Name="StylistTimeID" />
+    </Key>
+    <Property Type="Int32" Name="StylistTimeID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="TimeMinutes" />
+    <Property Type="Int32" Name="EmployeeID" />
+    <NavigationProperty Name="Employee" Relationship="LilSnippersModel.FK_StylistTimes_Employee" FromRole="StylistTime" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Type="Int32" Name="SupplierID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="BusinessName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address1" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address2" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="City" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="StateID" />
+    <Property Type="String" Name="Zip" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="CountryID" />
+    <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Phone" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fax" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Country" Relationship="LilSnippersModel.FK_Supplier_Country" FromRole="Supplier" ToRole="Country" />
+    <NavigationProperty Name="Products" Relationship="LilSnippersModel.FK_Product_Supplier" FromRole="Supplier" ToRole="Product" />
+    <NavigationProperty Name="State" Relationship="LilSnippersModel.FK_Supplier_State" FromRole="Supplier" ToRole="State" />
+  </EntityType>
+  <Association Name="FK_Client_HomeAddress">
+    <End Type="LilSnippersModel.HomeAddress" Role="HomeAddress" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HomeAddress">
+        <PropertyRef Name="HomeAddressID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="HomeAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_Month">
+    <End Type="LilSnippersModel.Months" Role="Month" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Client" Role="Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Month">
+        <PropertyRef Name="MonthID" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="MonthID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_Country">
+    <End Type="LilSnippersModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Supplier" Role="Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryID" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="CountryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_EmpPosition">
+    <End Type="LilSnippersModel.EmpPosition" Role="EmpPosition" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmpPosition">
+        <PropertyRef Name="EmpPositionID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="EmpPositionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_State">
+    <End Type="LilSnippersModel.State" Role="State" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Employee" Role="Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StylistTimes_Employee">
+    <End Type="LilSnippersModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.StylistTime" Role="StylistTime" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="StylistTime">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeAddress_HearAbout">
+    <End Type="LilSnippersModel.HearAbout" Role="HearAbout" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.HomeAddress" Role="HomeAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HearAbout">
+        <PropertyRef Name="HearAboutID" />
+      </Principal>
+      <Dependent Role="HomeAddress">
+        <PropertyRef Name="HearAboutID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HomeAddress_State">
+    <End Type="LilSnippersModel.State" Role="State" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.HomeAddress" Role="HomeAddress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="HomeAddress">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParentGuardian_HomeAddress">
+    <End Type="LilSnippersModel.HomeAddress" Role="HomeAddress" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.ParentGuardian" Role="ParentGuardian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HomeAddress">
+        <PropertyRef Name="HomeAddressID" />
+      </Principal>
+      <Dependent Role="ParentGuardian">
+        <PropertyRef Name="HomeAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Media_Media">
+    <End Type="LilSnippersModel.MediaType" Role="MediaType" Multiplicity="1" />
+    <End Type="LilSnippersModel.Medium" Role="Medium" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MediaType">
+        <PropertyRef Name="MediaTypeID" />
+      </Principal>
+      <Dependent Role="Medium">
+        <PropertyRef Name="MediaTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductType">
+    <End Type="LilSnippersModel.ProductType" Role="ProductType" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="ProductTypeID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Supplier">
+    <End Type="LilSnippersModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="SupplierID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="SupplierID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Supplier_State">
+    <End Type="LilSnippersModel.State" Role="State" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Supplier" Role="Supplier" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="StateID" />
+      </Principal>
+      <Dependent Role="Supplier">
+        <PropertyRef Name="StateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Transaction">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Type="Int32" Name="TransactionID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="DateTime" Name="TransDate" Precision="0" />
+    <Property Type="Int32" Name="EmployeeID" />
+    <Property Type="Int32" Name="HomeAddressID" />
+    <NavigationProperty Name="Employee" Relationship="LilSnippersModel.FK_Transactions_Employee" FromRole="Transaction" ToRole="Employee" />
+    <NavigationProperty Name="HomeAddress" Relationship="LilSnippersModel.FK_Transactions_HomeAddress" FromRole="Transaction" ToRole="HomeAddress" />
+    <NavigationProperty Name="Transaction_Details" Relationship="LilSnippersModel.FK_Transaction_Details_Transactions" FromRole="Transaction" ToRole="Transaction_Details" />
+  </EntityType>
+  <Association Name="FK_Transactions_Employee">
+    <End Type="LilSnippersModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transactions_HomeAddress">
+    <End Type="LilSnippersModel.HomeAddress" Role="HomeAddress" Multiplicity="0..1" />
+    <End Type="LilSnippersModel.Transaction" Role="Transaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HomeAddress">
+        <PropertyRef Name="HomeAddressID" />
+      </Principal>
+      <Dependent Role="Transaction">
+        <PropertyRef Name="HomeAddressID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="ServiceID" />
+    </Key>
+    <Property Type="Int32" Name="ServiceID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="ServiceName" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="ServicePrice" Nullable="false" Precision="5" Scale="2" />
+    <NavigationProperty Name="Transaction_Details" Relationship="LilSnippersModel.FK_Transaction_Details_Service" FromRole="Service" ToRole="Transaction_Details" />
+  </EntityType>
+  <EntityType Name="Transaction_Details">
+    <Key>
+      <PropertyRef Name="UniqueID" />
+      <PropertyRef Name="TransactionID" />
+      <PropertyRef Name="ServiceID" />
+      <PropertyRef Name="ProductID" />
+      <PropertyRef Name="ItemNo" />
+    </Key>
+    <Property Type="Int32" Name="UniqueID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="String" Name="ClientFirstName" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ClientLastName" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ServiceID" Nullable="false" />
+    <Property Type="Int16" Name="ServiceQuantity" />
+    <Property Type="Int32" Name="ProductID" Nullable="false" />
+    <Property Type="String" Name="ItemNo" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Type="Int16" Name="ProductQuantity" />
+    <Property Type="Decimal" Name="Discount" Precision="5" Scale="2" />
+    <NavigationProperty Name="Product" Relationship="LilSnippersModel.FK_Transaction_Details_Product" FromRole="Transaction_Details" ToRole="Product" />
+    <NavigationProperty Name="Service" Relationship="LilSnippersModel.FK_Transaction_Details_Service" FromRole="Transaction_Details" ToRole="Service" />
+    <NavigationProperty Name="Transaction" Relationship="LilSnippersModel.FK_Transaction_Details_Transactions" FromRole="Transaction_Details" ToRole="Transaction" />
+  </EntityType>
+  <Association Name="FK_Transaction_Details_Product">
+    <End Type="LilSnippersModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="LilSnippersModel.Transaction_Details" Role="Transaction_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+        <PropertyRef Name="ItemNo" />
+      </Principal>
+      <Dependent Role="Transaction_Details">
+        <PropertyRef Name="ProductID" />
+        <PropertyRef Name="ItemNo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Details_Service">
+    <End Type="LilSnippersModel.Service" Role="Service" Multiplicity="1" />
+    <End Type="LilSnippersModel.Transaction_Details" Role="Transaction_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="ServiceID" />
+      </Principal>
+      <Dependent Role="Transaction_Details">
+        <PropertyRef Name="ServiceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Transaction_Details_Transactions">
+    <End Type="LilSnippersModel.Transaction" Role="Transaction" Multiplicity="1" />
+    <End Type="LilSnippersModel.Transaction_Details" Role="Transaction_Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Transaction">
+        <PropertyRef Name="TransactionID" />
+      </Principal>
+      <Dependent Role="Transaction_Details">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
